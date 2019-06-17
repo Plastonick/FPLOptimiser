@@ -9,5 +9,5 @@
 import Foundation
 
 enum Position: Int, Decodable {
-    case Goalkeeper = 1, Defender, Midfielder, Forward
+    case goalkeeper = 1, defender, midfielder, forward
 }

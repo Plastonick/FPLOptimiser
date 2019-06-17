@@ -8,24 +8,18 @@
 
 import Foundation
 
+var filePath: String = CommandLine.arguments[1]
 
-let fileName: String = "fpl-predictions.json"
-var filePath: String = "/Users/david/fpl-predictions.json"
-
-// Read file content. Example in Swift
 do {
 	// Read file content
-	let contentFromFile = try NSString(contentsOfFile: filePath, encoding: String.Encoding.utf8.rawValue)
-	print(contentFromFile.substring(to: 100))
+	let jsonData = try Data(contentsOf: URL(fileURLWithPath: filePath))
 	
+	let decoder = JSONDecoder()
+
+	let players = try decoder.decode([Player].self, from: jsonData)
 	
-	let path = Bundle.main.path(forResource: filePath, ofType: "json")!
-	let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-	
-	let myStructArray = try JSONDecoder().decode([Player].self, from: data)
-	
-	print(myStructArray.count)
-} catch let error as NSError {
+	print(players.count)
+} catch let error {
 	print("An error took place: \(error)")
 }
 

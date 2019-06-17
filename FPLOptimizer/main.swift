@@ -9,13 +9,23 @@
 import Foundation
 
 
-let filename: String = "/Users/david/fpl-predictions.json"
-if let url = Bundle.main.url(forResource: filename, withExtension: "json") {
-    let data = try Data(contentsOf: url)
-    let decoder = JSONDecoder()
-    let jsonData = try decoder.decode(with: data)
-    
-    print(jsonData)
+let fileName: String = "fpl-predictions.json"
+var filePath: String = "/Users/david/fpl-predictions.json"
+
+// Read file content. Example in Swift
+do {
+	// Read file content
+	let contentFromFile = try NSString(contentsOfFile: filePath, encoding: String.Encoding.utf8.rawValue)
+	print(contentFromFile.substring(to: 100))
+	
+	
+	let path = Bundle.main.path(forResource: filePath, ofType: "json")!
+	let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+	
+	let myStructArray = try JSONDecoder().decode([Player].self, from: data)
+	
+	print(myStructArray.count)
+} catch let error as NSError {
+	print("An error took place: \(error)")
 }
 
-print(Position(rawValue: 4)!)

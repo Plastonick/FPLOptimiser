@@ -8,17 +8,15 @@
 
 import Foundation
 
-class Prediction {
-    let player: Player
+struct Prediction: Decodable {
     let gameWeekId: Int
-    let predictedScore: Float
+    let score: Float
     let chanceOfPlaying: Float
     let cost: Int
     
-    init (player: Player, gameWeekId: Int, predictedScore: Float, chanceOfPlaying: Float, cost: Int) {
-        self.player = player
+    init (gameWeekId: Int, score: Float, chanceOfPlaying: Float, cost: Int) {
         self.gameWeekId = gameWeekId
-        self.predictedScore = predictedScore
+        self.score = score
         self.chanceOfPlaying = chanceOfPlaying
         self.cost = cost
     }

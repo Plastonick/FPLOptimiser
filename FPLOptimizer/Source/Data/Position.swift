@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum Position: Int {
+enum Position: Int, Decodable {
     case Goalkeeper = 1, Defender, Midfielder, Forward
 }

@@ -20,4 +20,13 @@ class Player: Decodable {
         self.position = position
 		self.predictions = predictions
     }
+    
+    func getScoreByGame(id: Int) -> Float {
+        if let prediction = predictions.filter({ $0.gameWeekId == id }).first {
+            return prediction.score
+        }
+        
+        // TODO
+        return Float(0)
+    }
 }

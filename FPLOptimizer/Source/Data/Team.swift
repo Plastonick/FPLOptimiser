@@ -37,10 +37,6 @@ struct Team {
 	}
 	
 	private func isValidTeams() -> Bool {
-		var teamCounts: [Int: Int] = [:]
-		
-		for player in players {
-			teamCounts[player.]
-		}
+        return true
 	}
 }

@@ -16,14 +16,13 @@ do {
 	
 	let decoder = JSONDecoder()
 
-	let players = try decoder.decode([Player].self, from: jsonData)
-	let sortedPlayers = players.sorted {
-		$0.sc
-	}
+	var players = try decoder.decode([Player].self, from: jsonData)
+    
+    players.sort(by: { $0.getScoreByGame(id: 1) > $1.getScoreByGame(id: 1) })
 	
 	print(players.count)
 	
-	let somePlayers = Array(players.prefix(5))
+	let somePlayers = Array(players.prefix(15))
 	
 	let team = Team(players: somePlayers)
 	

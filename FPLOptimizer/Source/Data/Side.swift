@@ -8,19 +8,25 @@
 
 import Foundation
 
-struct Team {
+struct Side {
 	let players: [Player]
 	
 	init (players: [Player]) {
 		self.players = players
 	}
+    
+    func withPlayers(players: [Player]) -> Side {
+        let newPlayers = self.players + players
+        
+        return Side(players: newPlayers)
+    }
 	
-	public func isValid() -> Bool {
+	func isValid() -> Bool {
 		if !isValidPlayerCounts() {
 			return false
 		}
 		
-		return isValidPlayerCounts()
+		return isValidTeams()
 	}
 	
 	private func isValidPlayerCounts() -> Bool {
@@ -37,6 +43,22 @@ struct Team {
 	}
 	
 	private func isValidTeams() -> Bool {
+        var teamCount = [Int:Int]()
+        
+        for player in players {
+            if teamCount.keys.contains(player.teamId) {
+                teamCount[player.teamId]! += 1
+            } else {
+                teamCount[player.teamId] = 1
+            }
+        }
+        
+        for (_, count) in teamCount {
+            if count > 3 {
+                return false
+            }
+        }
+        
         return true
 	}
 }

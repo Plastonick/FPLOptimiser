@@ -29,9 +29,25 @@ do {
 	
     print(players.count)
 	
-	let side = Side(players: [])
+    var squad = Squad(players: [], gameId: gameId)
+    var newSquad: Squad
+    
+    for player in players {
+        newSquad = squad.withPlayers(players: [player])
+        
+        if !newSquad.isExcessive() {
+            squad = newSquad
+            
+            if squad.isValid() {
+                break
+            }
+        }
+    }
+    
+    print(squad.getScore())
+    print(squad.getCost())
 	
-    if (side.isValid()) {
+    if (squad.isExcessive()) {
 		print("is valid!")
 	} else {
 		print("oh no!")

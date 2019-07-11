@@ -9,16 +9,26 @@
 import Foundation
 
 struct Squad {
-	let players: [Player]
+    let goalkeepers: [Player]
+    let defenders: [Player]
+    let midfielders: [Player]
+    let forwards: [Player]
     let gameId: Int
 	
     init (players: [Player], gameId: Int) {
-		self.players = players
+        self.goalkeepers = players.filter({ $0.position == Position.goalkeeper })
+        self.defenders = players.filter({ $0.position == Position.defender })
+        self.midfielders = players.filter({ $0.position == Position.midfielder })
+        self.forwards = players.filter({ $0.position == Position.forward })
         self.gameId = gameId
 	}
     
+    func getPlayers() -> [Player] {
+        return goalkeepers + defenders + midfielders + forwards
+    }
+    
     func withPlayers(players: [Player]) -> Squad {
-        let newPlayers = self.players + players
+        let newPlayers = getPlayers() + players
         
         return Squad(players: newPlayers, gameId: self.gameId)
     }
@@ -31,40 +41,38 @@ struct Squad {
 		return hasExceededTeamCount()
 	}
     
+    private func scoreComp(a: Player, b: Player) -> Bool {
+        return a.getCostForGame(id: gameId) > b.getCostForGame(id: gameId)
+    }
+    
     func getScore() -> Float {
-        return players.reduce(0.0, { $0 + $1.getScoreByGame(id: gameId) })
+        // TODO take into account benched players
+        
+        return getPlayers().reduce(0.0, { $0 + $1.getScoreByGame(id: gameId) })
     }
     
     func getCost() -> Int {
-        return players.reduce(0, { $0 + $1.getCostForGame(id: gameId) })
+        return getPlayers().reduce(0, { $0 + $1.getCostForGame(id: gameId) })
     }
     
     func isValid() -> Bool {
-        return players.count == 15 && !isExcessive()
+        return self.goalkeepers.count == 2
+            && self.defenders.count == 5
+            && self.midfielders.count == 5
+            && self.forwards.count == 3
     }
 	
 	private func hasExceededPositionCounts() -> Bool {
-        var positionCount = [
-            Position.goalkeeper: 0,
-            Position.defender: 0,
-            Position.midfielder: 0,
-            Position.forward: 0
-        ]
-        
-        for player in players {
-            positionCount[player.position]! += 1
-        }
-        
-        return positionCount[Position.goalkeeper]! > 2
-            || positionCount[Position.defender]! > 5
-            || positionCount[Position.midfielder]! > 5
-            || positionCount[Position.forward]! > 3
+        return self.goalkeepers.count > 2
+            || self.defenders.count > 5
+            || self.midfielders.count > 5
+            || self.forwards.count > 3
 	}
 	
 	private func hasExceededTeamCount() -> Bool {
         var teamCount = [Int:Int]()
         
-        for player in players {
+        for player in getPlayers() {
             if teamCount.keys.contains(player.teamId) {
                 teamCount[player.teamId]! += 1
             } else {

@@ -16,38 +16,15 @@ do {
 	
 	let decoder = JSONDecoder()
 
-	var players = try decoder.decode([Player].self, from: jsonData)
+	let players = try decoder.decode([Player].self, from: jsonData)
     
-    let gameId = 2
-    
-    players.sort(by: {
-        let player1Efficiency: Float = $0.getScoreByGame(id: gameId) / Float($0.getCostForGame(id: gameId))
-        let player2Efficiency: Float = $1.getScoreByGame(id: gameId) / Float($1.getCostForGame(id: gameId))
-        
-        return player1Efficiency > player2Efficiency
-    })
-	
-    print(players.count)
-	
-    var squad = Squad(players: [], gameId: gameId)
-    var newSquad: Squad
-    
-    for player in players {
-        newSquad = squad.withPlayers(players: [player])
-        
-        if !newSquad.isExcessive() {
-            squad = newSquad
-            
-            if squad.isValid() {
-                break
-            }
-        }
-    }
+    let optimizer = Optimizer(players: players)
+    let squad = optimizer.buildInitialTeam()
     
     print(squad.getScore())
     print(squad.getCost())
 	
-    if (squad.isExcessive()) {
+    if squad.isValid() {
 		print("is valid!")
 	} else {
 		print("oh no!")

@@ -9,13 +9,13 @@
 import Foundation
 
 struct Prediction: Decodable {
-    let gameWeekId: Int
+    let week: Int
     let score: Float
     let chanceOfPlaying: Float
     let cost: Int
     
-    init (gameWeekId: Int, score: Float, chanceOfPlaying: Float, cost: Int) {
-        self.gameWeekId = gameWeekId
+    init (week: Int, score: Float, chanceOfPlaying: Float, cost: Int) {
+        self.week = week
         self.score = score
         self.chanceOfPlaying = chanceOfPlaying
         self.cost = cost

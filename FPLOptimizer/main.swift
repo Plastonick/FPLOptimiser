@@ -13,23 +13,16 @@ var filePath: String = CommandLine.arguments[1]
 do {
 	// Read file content
 	let jsonData = try Data(contentsOf: URL(fileURLWithPath: filePath))
-	
+
 	let decoder = JSONDecoder()
 
 	let players = try decoder.decode([Player].self, from: jsonData)
-    
-    let optimizer = Optimizer(players: players)
-    let squad = optimizer.buildInitialTeam()
-    
-    print(squad.getScore())
-    print(squad.getCost())
-	
-    if squad.isValid() {
-		print("is valid!")
-	} else {
-		print("oh no!")
-	}
 
+    let optimizer = Optimizer(players: players)
+    let team = optimizer.buildInitialTeam()
+
+    print(team.getScore())
+    print(team.getCost())
 } catch let error {
 	print("An error took place: \(error)")
 }

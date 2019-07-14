@@ -15,16 +15,17 @@ struct Optimizer {
         self.players = players
     }
     
-    func buildInitialTeam() -> Squad {
-        let gameId = 3
+    func buildInitialTeam() -> Team {
+        let fromWeek = 1
+        let toWeek = 5
         let sortedPlayers = players.sorted(by: {
-            let player1Efficiency: Float = $0.getScoreByGame(id: gameId) / Float($0.getCostForGame(id: gameId))
-            let player2Efficiency: Float = $1.getScoreByGame(id: gameId) / Float($1.getCostForGame(id: gameId))
+            let player1Efficiency: Float = $0.getScoreBetweenWeeks(from: fromWeek, to: toWeek) / Float($0.getCostForWeek(week: fromWeek))
+            let player2Efficiency: Float = $1.getScoreBetweenWeeks(from: fromWeek, to: toWeek) / Float($1.getCostForWeek(week: fromWeek))
             
             return player1Efficiency > player2Efficiency
         })
         
-        var squad = Squad(players: [], gameId: gameId)
+        var squad = Squad(players: [], week: fromWeek)
         var newSquad: Squad
         
         for player in sortedPlayers {
@@ -38,7 +39,9 @@ struct Optimizer {
                 }
             }
         }
-        
-        return squad
+
+        let squads = (1...38).map({ Squad(players: squad.getPlayers(), week: $0) })
+		
+        return Team(squads: squads)
     }
 }

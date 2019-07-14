@@ -12,31 +12,34 @@ class Player: Decodable {
     let id: Int
     let name: String
     let position: Position
-    let teamId: Int
+    let team: Int
 	let predictions: [Prediction]
     
-    init (id: Int, name: String, position: Position, teamId: Int, predictions: [Prediction]) {
+    init (id: Int, name: String, position: Position, team: Int, predictions: [Prediction]) {
         self.id = id
         self.name = name
         self.position = position
-        self.teamId = teamId
+        self.team = team
 		self.predictions = predictions
     }
     
-    func getCostForGame(id: Int) -> Int {
-        if let prediction = predictions.filter({ $0.gameWeekId == id }).first {
+    func getCostForWeek(week: Int) -> Int {
+        if let prediction = predictions.filter({ $0.week == week }).first {
             return prediction.cost
         }
         
         return Int.max
     }
     
-    func getScoreByGame(id: Int) -> Float {
-        if let prediction = predictions.filter({ $0.gameWeekId == id }).first {
-            return prediction.score
-        }
-        
-        // TODO
-        return Float(0)
+    func getScoreForWeek(week: Int) -> Float {
+		let games = predictions.filter({ $0.week == week })
+		
+		return games.reduce(0.0, { $0 + $1.score })
+    }
+
+    func getScoreBetweenWeeks(from: Int, to: Int) -> Float {
+        let games = predictions.filter({ $0.week >= from && $0.week <= to })
+
+        return games.reduce(0.0, { $0 + $1.score })
     }
 }

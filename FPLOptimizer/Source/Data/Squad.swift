@@ -13,14 +13,14 @@ struct Squad {
     let defenders: [Player]
     let midfielders: [Player]
     let forwards: [Player]
-    let gameId: Int
+    let week: Int
 	
-    init (players: [Player], gameId: Int) {
+    init (players: [Player], week: Int) {
         self.goalkeepers = players.filter({ $0.position == Position.goalkeeper })
         self.defenders = players.filter({ $0.position == Position.defender })
         self.midfielders = players.filter({ $0.position == Position.midfielder })
         self.forwards = players.filter({ $0.position == Position.forward })
-        self.gameId = gameId
+        self.week = week
 	}
     
     func getPlayers() -> [Player] {
@@ -29,8 +29,8 @@ struct Squad {
     
     func withPlayers(players: [Player]) -> Squad {
         let newPlayers = getPlayers() + players
-        
-        return Squad(players: newPlayers, gameId: self.gameId)
+	
+		return Squad(players: newPlayers, week: self.week)
     }
 	
 	func isExcessive() -> Bool {
@@ -42,17 +42,17 @@ struct Squad {
 	}
     
     private func scoreComp(a: Player, b: Player) -> Bool {
-        return a.getCostForGame(id: gameId) > b.getCostForGame(id: gameId)
+        return a.getCostForWeek(week: week) > b.getCostForWeek(week: week)
     }
     
     func getScore() -> Float {
-        // TODO take into account benched players
+        // TODO take into account benched players, captaincy, chance of playing, etc.
         
-        return getPlayers().reduce(0.0, { $0 + $1.getScoreByGame(id: gameId) })
+        return getPlayers().reduce(0.0, { $0 + $1.getScoreForWeek(week: week) })
     }
     
     func getCost() -> Int {
-        return getPlayers().reduce(0, { $0 + $1.getCostForGame(id: gameId) })
+        return getPlayers().reduce(0, { $0 + $1.getCostForWeek(week: week) })
     }
     
     func isValid() -> Bool {
@@ -73,10 +73,10 @@ struct Squad {
         var teamCount = [Int:Int]()
         
         for player in getPlayers() {
-            if teamCount.keys.contains(player.teamId) {
-                teamCount[player.teamId]! += 1
+            if teamCount.keys.contains(player.team) {
+                teamCount[player.team]! += 1
             } else {
-                teamCount[player.teamId] = 1
+                teamCount[player.team] = 1
             }
         }
         

@@ -21,8 +21,9 @@ do {
     let optimizer = Optimizer(players: players)
     let team = optimizer.buildInitialTeam()
 
-    print(team.getScore())
-    print(team.getCost())
+    print("Total cost: " + String(Float(team.getCost()) / 10))
+    team.printScore()
+    
 } catch let error {
 	print("An error took place: \(error)")
 }

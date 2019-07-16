@@ -23,6 +23,10 @@ class Player: Decodable {
 		self.predictions = predictions
     }
     
+    func playsInWeek(week: Int) -> Bool {
+        return predictions.filter({ $0.week == week }).first != nil
+    }
+    
     func getCostForWeek(week: Int) -> Int {
         if let prediction = predictions.filter({ $0.week == week }).first {
             return prediction.cost

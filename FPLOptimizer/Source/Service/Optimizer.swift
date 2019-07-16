@@ -29,6 +29,10 @@ struct Optimizer {
         var newSquad: Squad
         
         for player in sortedPlayers {
+            if !player.playsInWeek(week: fromWeek) {
+                continue
+            }
+            
             newSquad = squad.withPlayers(players: [player])
             
             if !newSquad.isExcessive() {

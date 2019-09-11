@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/david/fpl-predictions-3.json"
+            argument = "/Users/david/Developer/FPLOptimiser/fpl-predictions.json"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

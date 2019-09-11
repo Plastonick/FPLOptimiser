@@ -8,31 +8,60 @@
 import Foundation
 
 class Team {
-    var squads: [Squad]
-	var transfers: [Int: [Transfer]] = [:]
+//    let money: Float
+    let squads: [Squad]
+	let transfers: [Int: [Transfer]]
     
-    init (squads: [Squad]) {
+    init (squads: [Squad], transfers: [Int: [Transfer]]) {
         self.squads = squads
+        self.transfers = transfers
     }
 	
-	func makeTransfer(week: Int, transfer: Transfer) {
-		// check if either player is already being transferred this week
+	func makeTransfer(week: Int, transfer: Transfer) -> Team {
+		// TODO check if either player is already being transferred this week
+        var newTransfers = self.transfers
 		
 		// add to list of transfers
-        if self.transfers[week] != nil {
-            self.transfers[week]!.append(transfer)
+        if newTransfers[week] != nil {
+            newTransfers[week]!.append(transfer)
         } else {
-            self.transfers[week] = [transfer]
+            newTransfers[week] = [transfer]
         }
-		
+
+        // adjust squad
+        let currentSquad = getSquadFor(week: week)
+        var newPlayers = currentSquad!.getPlayers().filter({ $0.id != transfer.playerOut.id })
+        newPlayers.append(transfer.playerIn)
+
+        var newSquads = self.squads
+
 		// adjust future squads
         for eachWeek in (week...38) {
             // wipe future transfers for now, since they're possibly incompatible
-            transfers[week] = []
-            
-            // apply all current transfers
+            if eachWeek > week {
+                newTransfers[eachWeek] = []
+            }
+
+            // change week
+            for (index, squad) in squads.enumerated() {
+                if squad.week >= eachWeek {
+                    newSquads[index] = Squad(players: newPlayers, week: eachWeek)
+                }
+            }
         }
+
+        return Team(squads: newSquads, transfers: newTransfers)
 	}
+
+    func isValid() -> Bool {
+        for squad in squads {
+            if !squad.isValid() {
+                return false
+            }
+        }
+
+        return true
+    }
     
     func printScore() {
         for squad in squads {
@@ -51,4 +80,8 @@ class Team {
 		
 		return squads.first!.getCost()
 	}
+
+    func getSquadFor(week: Int) -> Squad? {
+        return squads.filter({ $0.week == week }).first
+    }
 }

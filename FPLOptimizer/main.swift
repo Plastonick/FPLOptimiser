@@ -19,7 +19,10 @@ do {
 	let players = try decoder.decode([Player].self, from: jsonData)
 
     let optimizer = Optimizer(players: players)
-    let team = optimizer.buildInitialTeam()
+
+//    let bestKeeperPair = optimizer.getBestKeeperPair()
+
+    let team = optimizer.optimise()
 
     print("Total cost: " + String(Float(team.getCost()) / 10))
     team.printScore()

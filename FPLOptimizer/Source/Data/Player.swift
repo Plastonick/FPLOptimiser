@@ -31,14 +31,13 @@ class Player: Decodable {
         if let prediction = predictions.filter({ $0.week == week }).first {
             return prediction.cost
         }
-        
-        return Int.max
+
+        // if the player isn't present, give them an expensive price
+        return 100000
     }
     
     func getScoreForWeek(week: Int) -> Float {
-		let games = predictions.filter({ $0.week == week })
-		
-		return games.reduce(0.0, { $0 + $1.score })
+		return self.getScoreBetweenWeeks(from: week, to: week)
     }
 
     func getScoreBetweenWeeks(from: Int, to: Int) -> Float {

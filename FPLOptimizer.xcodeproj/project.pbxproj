@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6300AA4622CE708E00D13B66 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6300AA4522CE708E00D13B66 /* Team.swift */; };
+		633F834D23CE61490016FFB7 /* Knapsack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633F834C23CE61490016FFB7 /* Knapsack.swift */; };
+		633F834F23D2FFBF0016FFB7 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633F834E23D2FFBF0016FFB7 /* Group.swift */; };
 		63A3275222C3F4A400F7D149 /* Squad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A3275122C3F4A400F7D149 /* Squad.swift */; };
 		63B2052F22A6F6B5006957C2 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B2052E22A6F6B5006957C2 /* Player.swift */; };
 		63B2BB9D22A6F90900FCC064 /* Optimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B2BB9C22A6F90900FCC064 /* Optimizer.swift */; };
@@ -15,7 +17,7 @@
 		63D6B36C22D7CB0500F82F77 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6B36B22D7CB0500F82F77 /* Transfer.swift */; };
 		63D71DC523CBA62F00A38815 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D71DC423CBA62F00A38815 /* Item.swift */; };
 		63D71DC723CBA63A00A38815 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D71DC623CBA63A00A38815 /* Node.swift */; };
-		63D71DC923CBA65B00A38815 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D71DC823CBA65B00A38815 /* RingBuffer.swift */; };
+		63D71DC923CBA65B00A38815 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D71DC823CBA65B00A38815 /* Queue.swift */; };
 		63F3661C22A40D620005FCC0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3661B22A40D620005FCC0 /* main.swift */; };
 		63F3662522A40DA00005FCC0 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3662422A40DA00005FCC0 /* Prediction.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		6300AA4522CE708E00D13B66 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		633F834C23CE61490016FFB7 /* Knapsack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knapsack.swift; sourceTree = "<group>"; };
+		633F834E23D2FFBF0016FFB7 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		63A3275122C3F4A400F7D149 /* Squad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squad.swift; sourceTree = "<group>"; };
 		63B2052E22A6F6B5006957C2 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		63B2BB9C22A6F90900FCC064 /* Optimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optimizer.swift; sourceTree = "<group>"; };
@@ -41,7 +45,7 @@
 		63D6B36B22D7CB0500F82F77 /* Transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
 		63D71DC423CBA62F00A38815 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		63D71DC623CBA63A00A38815 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		63D71DC823CBA65B00A38815 /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
+		63D71DC823CBA65B00A38815 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		63F3661822A40D620005FCC0 /* FPL Optimizer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "FPL Optimizer"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F3661B22A40D620005FCC0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		63F3662422A40DA00005FCC0 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -62,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				63B2BB9C22A6F90900FCC064 /* Optimizer.swift */,
+				633F834C23CE61490016FFB7 /* Knapsack.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -96,7 +101,7 @@
 			children = (
 				63F3662222A40D820005FCC0 /* Source */,
 				63F3661B22A40D620005FCC0 /* main.swift */,
-				63D71DC823CBA65B00A38815 /* RingBuffer.swift */,
+				63D71DC823CBA65B00A38815 /* Queue.swift */,
 			);
 			path = FPLOptimizer;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 				63C1C6F222A6F4CC00DAB1E6 /* Position.swift */,
 				63B2052E22A6F6B5006957C2 /* Player.swift */,
 				63D6B36B22D7CB0500F82F77 /* Transfer.swift */,
+				633F834E23D2FFBF0016FFB7 /* Group.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -182,10 +188,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				63A3275222C3F4A400F7D149 /* Squad.swift in Sources */,
+				633F834D23CE61490016FFB7 /* Knapsack.swift in Sources */,
 				63D71DC723CBA63A00A38815 /* Node.swift in Sources */,
 				63D71DC523CBA62F00A38815 /* Item.swift in Sources */,
-				63D71DC923CBA65B00A38815 /* RingBuffer.swift in Sources */,
+				63D71DC923CBA65B00A38815 /* Queue.swift in Sources */,
 				63B2052F22A6F6B5006957C2 /* Player.swift in Sources */,
+				633F834F23D2FFBF0016FFB7 /* Group.swift in Sources */,
 				6300AA4622CE708E00D13B66 /* Team.swift in Sources */,
 				63F3661C22A40D620005FCC0 /* main.swift in Sources */,
 				63B2BB9D22A6F90900FCC064 /* Optimizer.swift in Sources */,

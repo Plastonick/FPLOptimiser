@@ -9,36 +9,26 @@
 import Foundation
 
 struct Squad {
-    let goalkeepers: [Player]
-    let defenders: [Player]
-    let midfielders: [Player]
-    let forwards: [Player]
+    let group: Group
     let week: Int
 	
     init (players: [Player], week: Int) {
-        self.goalkeepers = players.filter({ $0.position == Position.goalkeeper })
-        self.defenders = players.filter({ $0.position == Position.defender })
-        self.midfielders = players.filter({ $0.position == Position.midfielder })
-        self.forwards = players.filter({ $0.position == Position.forward })
+        self.group = Group(players: players)
         self.week = week
 	}
     
     func getPlayers() -> [Player] {
-        return goalkeepers + defenders + midfielders + forwards
+        return self.group.getPlayers()
     }
     
     func withPlayers(players: [Player]) -> Squad {
-        let newPlayers = getPlayers() + players
+        let newPlayers = self.getPlayers() + players
 	
 		return Squad(players: newPlayers, week: self.week)
     }
 	
 	func isExcessive() -> Bool {
-		if hasExceededPositionCounts() {
-			return true
-		}
-		
-		return hasExceededTeamCount()
+        return self.group.isExcessive()
 	}
     
     private func scoreComp(a: Player, b: Player) -> Bool {
@@ -56,36 +46,14 @@ struct Squad {
     }
     
     func isValid() -> Bool {
-        return self.goalkeepers.count == 2
-            && self.defenders.count == 5
-            && self.midfielders.count == 5
-            && self.forwards.count == 3
+        return self.group.isValid()
     }
-	
-	private func hasExceededPositionCounts() -> Bool {
-        return self.goalkeepers.count > 2
-            || self.defenders.count > 5
-            || self.midfielders.count > 5
-            || self.forwards.count > 3
-	}
-	
-	private func hasExceededTeamCount() -> Bool {
-        var teamCount = [Int:Int]()
-        
-        for player in getPlayers() {
-            if teamCount.keys.contains(player.team) {
-                teamCount[player.team]! += 1
-            } else {
-                teamCount[player.team] = 1
-            }
-        }
-        
-        for (_, count) in teamCount {
-            if count > 3 {
-                return true
-            }
-        }
-        
-        return false
-	}
+
+    public func hasExceededTeamLimit() -> Bool {
+        return self.group.hasExceededTeamLimit()
+    }
+
+    public func hasExceededPositionLimits() -> Bool {
+        return self.group.hasExceededPositionLimits()
+    }
 }

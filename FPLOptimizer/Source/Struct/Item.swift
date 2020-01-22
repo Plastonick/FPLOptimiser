@@ -9,12 +9,12 @@
 import Foundation
 
 struct Item {
-    let name: String
+    let player: Player
     let value: Double
     let weight: Double
 
-    init(name: String, value: Double, weight: Double) {
-        self.name = name
+    init(player: Player, value: Double, weight: Double) {
+        self.player = player
         self.value = value
         self.weight = weight
     }

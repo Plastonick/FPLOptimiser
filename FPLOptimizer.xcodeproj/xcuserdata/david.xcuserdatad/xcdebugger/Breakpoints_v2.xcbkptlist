@@ -7,272 +7,288 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "085DEC12-DA7F-442F-AF4E-A3A6F1CD0F43"
+            uuid = "64E57A36-8BFE-43E9-A2B6-BCB721CB7493"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FPLOptimizer/main.swift"
-            timestampString = "588197951.308116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "bound(u:n:W:itemLimit:arr:)"
-            landmarkType = "9">
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E23DC3A5-BBBA-49D9-BADA-AC70084098A2"
+            uuid = "EF5E13C5-00A5-4F4D-8340-9DBE8BFC1924"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.308203"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "buildInitialTeam()"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "init(items:week:weightLimit:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F272CD53-02EB-4554-A0A9-676E2FC5F566"
+            uuid = "3067DD96-6F93-4983-A0C6-B07BA00C8543"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.308655"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "buildInitialTeam()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F272CD53-02EB-4554-A0A9-676E2FC5F566 - cd32d41743366749"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FPL_Optimizer.Optimizer.buildInitialTeam() -&gt; FPL_Optimizer.Team"
-                  moduleName = "FPL Optimizer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/david/Developer/FPLOptimiser/FPLOptimizer/Source/Service/Optimizer.swift"
-                  timestampString = "584992912.462047"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "1744">
-               </Location>
-               <Location
-                  uuid = "F272CD53-02EB-4554-A0A9-676E2FC5F566 - 76c3b707ef282aee"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Int) -&gt; FPL_Optimizer.Squad in FPL_Optimizer.Optimizer.buildInitialTeam() -&gt; FPL_Optimizer.Team"
-                  moduleName = "FPL Optimizer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/david/Developer/FPLOptimiser/FPLOptimizer/Source/Service/Optimizer.swift"
-                  timestampString = "584992912.4642"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4C6B2C04-0232-491F-BD87-99C64B3B3AC5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.308969"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "optimise()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BB8CFEA6-BBE6-40F5-B342-3761EDB529F4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.3092999"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "tryPlayer(player:week:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4A11FFAA-8FF8-4E09-AAAB-D58F3B24FB0A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.3096"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "optimise()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FD0085D2-019E-4E8B-9453-451B1997BE76"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/main.swift"
-            timestampString = "588197951.309906"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "bound(u:n:W:itemLimit:arr:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ED21F85B-5A28-4A2F-9056-C9C51D864C12"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.3099639"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
             endingLineNumber = "147"
-            landmarkName = "getBestKeeperPair()"
+            landmarkName = "nodeIsValid(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D20F3386-B2B5-4AFF-9C67-E46A35EF2ED3"
+            uuid = "21A99603-B66A-4E15-8C3F-11497BDED240"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.310261"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "nodeIsValid(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9176CBB1-00C6-49B7-9CAE-8A2B8188C7D9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "nodeIsValid(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A9B9A9E9-C398-4556-85C9-19FA7E917E59"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "nodeIsValid(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "779F0506-63FF-466E-AF41-E3DA4F1ED5D1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
             endingLineNumber = "105"
-            landmarkName = "getBestKeeperPair()"
+            landmarkName = "solve()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CC8ACDA9-0FCE-4D72-A25A-507D2DF469F6"
+            uuid = "559EE01C-C1CB-40B5-A4A3-3186AC6AF91F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.310559"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "getBestKeeperPair()"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "nodeExceededPositionLimits(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E00A92ED-420B-48E8-9150-9D98EC41DDA6"
+            uuid = "9F6BAF96-4A77-457A-9C6B-4D82ED5EC81F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.310847"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "getBestKeeperPair()"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "solve()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FD223346-9B05-4867-A388-BEA67B774805"
+            uuid = "6DF34127-6F33-4123-91F1-15F565AB0D8D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.311144"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "getBestKeeperPair()"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "nodeExceededTeamLimit(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3997F194-6AE9-4EF6-B282-2357B42F41DB"
+            uuid = "9A626EE4-03B7-43A9-AC1C-051C9D74436E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.3114409"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "getBestKeeperPair()"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "solve()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B3531482-01F8-41E6-8C18-271DC8AB2F62"
+            uuid = "6F6E9A3B-CA4B-46BD-B14D-49E9D5B11C95"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FPLOptimizer/Source/Service/Optimizer.swift"
-            timestampString = "588197951.3117321"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "getBestKeeperPair()"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "solve()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "564BFF3B-21E7-41B6-86BF-57FCAAD4A1B5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "solve()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "64208E78-0621-4840-974D-0F22FC6C7337"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "bound(node:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A94E975-CF97-417C-B1BA-A1C2C9F75D03"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "bound(node:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F812C785-FA66-48F8-8A39-5E9A8BBA693A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "bound(node:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EEDEEE34-0C21-4AA2-95F9-89D482D3BD2D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "solve()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C620395-6400-473C-AC13-D345F139F84F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FPLOptimizer/Source/Service/Knapsack.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "solve()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

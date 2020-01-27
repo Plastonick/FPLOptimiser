@@ -15,7 +15,7 @@ class Knapsack {
     let itemsByValue: [Item]
     let week: Int
     let weightLimit: Double
-    var maxProfit: Double = 0
+    var maxProfit: Double = 91
     var bestItems: [Item] = []
 
     init (items: [Item], week: Int, weightLimit: Double) {
@@ -50,33 +50,48 @@ class Knapsack {
         }
 
         // initialize bound on profit by current profit
-        var profitBound: Double = node.profit
+        var profitBound: Double = node.value
 
         // start including items from index 1 more to current
         // item index
         var currentLevel: Int = node.level + 1
         var totalWeight: Double = node.weight
+        var captaincyBonus = node.captainBonus
 
-        while currentLevel < self.nodeCount && totalWeight + self.itemsByEfficiency[currentLevel].weight <= self.weightLimit {
-            let itemByConsideration = self.itemsByEfficiency[currentLevel]
-            currentLevel += 1
-            totalWeight += itemByConsideration.weight
-            profitBound += itemByConsideration.value
+        if let itemsRemaining = self.itemsByEfficiencyDictionary[currentLevel] {
+            let itemsRemainingCount = itemsRemaining.count
+
+            while currentLevel < itemsRemainingCount && totalWeight + itemsRemaining[currentLevel].weight <= self.weightLimit {
+                let itemByConsideration = itemsRemaining[currentLevel]
+                currentLevel += 1
+                totalWeight += itemByConsideration.weight
+                profitBound += itemByConsideration.value
+
+                if itemByConsideration.value > captaincyBonus {
+                    captaincyBonus = itemByConsideration.value
+                }
+            }
+
+            profitBound += captaincyBonus
+
+            // If k is not n, include last item partially for
+            // upper bound on profit
+            if (currentLevel < itemsRemainingCount) {
+                profitBound += (self.weightLimit - totalWeight) * itemsRemaining[currentLevel].value / itemsRemaining[currentLevel].weight
+            }
+
+            return profitBound
         }
 
-        // If k is not n, include last item partially for
-        // upper bound on profit
-        if (currentLevel < self.nodeCount) {
-            profitBound += (self.weightLimit - totalWeight) * self.itemsByEfficiency[currentLevel].value / self.itemsByEfficiency[currentLevel].weight
-        }
-
-        return profitBound
+        return Double(0)
     }
+
+    // TODO create an initial naive guess to give a bound with which to work with. It should help ignore invalid solutions quicker
 
     func solve() -> (Double, [Item]) {
         // make a queue for traversing the node
         var queue = buildQueue()
-        var u = Node(level: -1, profit: 0, weight: 0, goalkeeperCount: 0, defenderCount: 0, midfielderCount: 0, forwardCount: 0, teamCount: [:], items: [])
+        var u = Node(level: -1, value: 0, captainBonus: 0, weight: 0, goalkeeperCount: 0, defenderCount: 0, midfielderCount: 0, forwardCount: 0, teamCount: [:], items: [])
 
         // dummy node at starting
         queue.write(u)
@@ -99,13 +114,13 @@ class Knapsack {
                 continue
             }
 
-            let nodeWithPlayer = u.withItem(item: self.itemsByEfficiency[level])
+            let nodeWithPlayer = u.withItem(item: self.itemsByValue[level])
 
             let withPlayerIsValid = self.nodeIsValid(nodeWithPlayer)
             let boundWithPlayer = bound(node: nodeWithPlayer)
             if withPlayerIsValid && boundWithPlayer > self.maxProfit {
-                if nodeWithPlayer.profit > self.maxProfit && nodeWithPlayer.items.count == 15 {
-                    self.maxProfit = nodeWithPlayer.profit
+                if nodeWithPlayer.items.count == 15 && nodeWithPlayer.calculateTeamScore() > self.maxProfit {
+                    self.maxProfit = nodeWithPlayer.calculateTeamScore()
                     self.bestItems = nodeWithPlayer.items
 
                     print(self.maxProfit)
@@ -124,7 +139,6 @@ class Knapsack {
 //                    break
 //                }
             }
-
 
             // Do the same thing, but without taking the item in knapsack
             let nodeWithoutPlayer = u.withoutItem()

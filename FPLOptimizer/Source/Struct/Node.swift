@@ -10,7 +10,8 @@ import Foundation
 
 struct Node {
     let level: Int
-    let profit: Double
+    let value: Double
+    let captainBonus: Double
     let weight: Double
     let goalkeeperCount: Int
     let defenderCount: Int
@@ -21,7 +22,8 @@ struct Node {
 
     init (
         level: Int,
-        profit: Double,
+        value: Double,
+        captainBonus: Double,
         weight: Double,
         goalkeeperCount: Int,
         defenderCount: Int,
@@ -31,7 +33,8 @@ struct Node {
         items: [Item]
     ) {
         self.level = level
-        self.profit = profit
+        self.value = value
+        self.captainBonus = captainBonus
         self.weight = weight
         self.goalkeeperCount = goalkeeperCount
         self.defenderCount = defenderCount
@@ -39,6 +42,10 @@ struct Node {
         self.forwardCount = forwardCount
         self.teamCount = teamCount
         self.items = items
+    }
+
+    public func calculateTeamScore() -> Double {
+        return self.value + self.captainBonus
     }
 
     public func withItem(item: Item) -> Node {
@@ -69,9 +76,17 @@ struct Node {
             teamCount[item.player.team] = 1
         }
 
+        let newCaptainBonus: Double
+        if item.value > captainBonus {
+            newCaptainBonus = item.value
+        } else {
+            newCaptainBonus = self.captainBonus
+        }
+
         return Node(
             level: self.level + 1,
-            profit: self.profit + item.value,
+            value: self.value + item.value,
+            captainBonus: newCaptainBonus,
             weight: self.weight + item.weight,
             goalkeeperCount: goalkeeperCount,
             defenderCount: defenderCount,
@@ -85,7 +100,8 @@ struct Node {
     public func withoutItem() -> Node {
         return Node(
             level: self.level + 1,
-            profit: self.profit,
+            value: self.value,
+            captainBonus: self.captainBonus,
             weight: self.weight,
             goalkeeperCount: self.goalkeeperCount,
             defenderCount: self.defenderCount,

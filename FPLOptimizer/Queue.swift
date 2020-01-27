@@ -12,9 +12,9 @@ public struct Queue<T> {
 
   public mutating func write(_ element: T) {
     //  todo figure out why is this better... 
-    if array.count > 1000 {
-        return
-    }
+//    if array.count > 1000 {
+//        return
+//    }
 
     array.append(element)
   }

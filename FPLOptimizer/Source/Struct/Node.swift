@@ -76,12 +76,7 @@ struct Node {
             teamCount[item.player.team] = 1
         }
 
-        let newCaptainBonus: Double
-        if item.value > captainBonus {
-            newCaptainBonus = item.value
-        } else {
-            newCaptainBonus = self.captainBonus
-        }
+        let newCaptainBonus: Double = item.value > captainBonus ? item.value : self.captainBonus
 
         return Node(
             level: self.level + 1,

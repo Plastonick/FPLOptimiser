@@ -127,4 +127,28 @@ struct Node {
 			upperBounds: self.upperBounds
         )
     }
+	
+	public func printNode() {
+		var totalCost: Double = 0
+		var totalScore: Double = 0
+		var lastPosition: Position = Position.forward
+		var player: Player
+		for item in self.items.sorted(by: { $0.player.position.rawValue < $1.player.position.rawValue }) {
+			player = item.player
+			if player.position != lastPosition {
+			  print("")
+			  lastPosition = player.position
+			}
+
+			print("\(player.name): \(item.value)")
+			totalCost += item.weight
+			totalScore += item.value
+		}
+		
+		print("")
+		print("Total score: \(totalScore)")
+		print("Total cost: \(totalCost)")
+		print("")
+		print("")
+	}
 }

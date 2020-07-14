@@ -14,7 +14,7 @@ class Knapsack {
     let itemsOrderedByValue: [Item]
     let week: Int
     let weightLimit: Double
-    var maxProfit: Double = 94
+    var maxProfit: Double = 94.85
     var bestItems: [Item] = []
 
     init (items: [Item], week: Int, weightLimit: Double) {
@@ -69,6 +69,11 @@ class Knapsack {
             u = queue.read()!
 
             let level = u.level + 1
+			
+			// check that our last bound hasn't already been exceeded
+			if u.upperBounds.count > 0 && u.upperBounds.last! < self.maxProfit {
+				continue
+			}
 
             // If there is nothing on next level
             if (level == self.nodeCount) {
@@ -89,6 +94,8 @@ class Knapsack {
 						self.bestItems = nodeWithPlayer.items
 						
 						print(self.maxProfit)
+						nodeWithPlayer.printNode()
+						exit(0)
 					}
                 } else {
                     // This isn't a complete team yet, but the score upper bound is greater than the current best team,
@@ -133,29 +140,31 @@ class Knapsack {
 		}
 		
 		// TODO consider finding the highest value applicable player if there is a single slot remaining
-
-        var currentLevel: Int = 0
 		
 		var upperBound: Node = node
 		
 		let itemsRemaining = self.getItemEfficiencyListFor(level: node.level)
 		
-		while upperBound.weight + itemsRemaining[currentLevel].weight <= self.weightLimit {
-			upperBound = upperBound.withItem(item: itemsRemaining[currentLevel])
-			currentLevel += 1
+		var index: Int = 0
+		var considerPlayer = itemsRemaining[index]
+		while upperBound.weight + considerPlayer.weight <= self.weightLimit {
+			upperBound = upperBound.withItem(item: considerPlayer)
+			index += 1
 			
 			// there are no more players to consider -- return the current team score
-			if currentLevel >= itemsRemaining.count {
+			if index >= itemsRemaining.count {
 				return upperBound.calculateTeamScore()
 			}
+			
+			considerPlayer = itemsRemaining[index]
 		}
 
 		var profitBound = upperBound.calculateTeamScore()
 		
 		// we have partial weight remaining, assume we can include a fraction of a player for a better upper bound
 		if (upperBound.weight < self.weightLimit) {
-			let playerInclusionAmount = (self.weightLimit - upperBound.weight) / itemsRemaining[currentLevel].weight
-			profitBound += playerInclusionAmount * itemsRemaining[currentLevel].value
+			let playerInclusionAmount = (self.weightLimit - upperBound.weight) / considerPlayer.weight
+			profitBound += playerInclusionAmount * considerPlayer.value
 		}
 
         return profitBound

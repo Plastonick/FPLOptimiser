@@ -14,7 +14,7 @@ class Knapsack {
     let itemsOrderedByValue: [Item]
     let week: Int
     let weightLimit: Double
-    var maxProfit: Double = 90
+    var maxProfit: Double = 94
     var bestItems: [Item] = []
 
     init (items: [Item], week: Int, weightLimit: Double) {
@@ -134,7 +134,7 @@ class Knapsack {
 		
 		// TODO consider finding the highest value applicable player if there is a single slot remaining
 
-        var currentLevel: Int = node.level
+        var currentLevel: Int = 0
 		
 		var upperBound: Node = node
 		
@@ -156,10 +156,6 @@ class Knapsack {
 		if (upperBound.weight < self.weightLimit) {
 			let playerInclusionAmount = (self.weightLimit - upperBound.weight) / itemsRemaining[currentLevel].weight
 			profitBound += playerInclusionAmount * itemsRemaining[currentLevel].value
-		}
-		
-		if node.upperBounds.count > 0 && profitBound > node.upperBounds.last! {
-			print("oh shit")
 		}
 
         return profitBound

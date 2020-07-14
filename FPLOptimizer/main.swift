@@ -8,13 +8,20 @@
 
 import Foundation
 
-var filePath: String = CommandLine.arguments[1]
+//DispatchQueue.concurrentPerform(iterations: 100000) { i in
+//	let b = (0 ... i).reduce(0, +)
+//
+//	print(b)
+//}
+
+
+let filePath: String = CommandLine.arguments[1]
 
 do {
-	// Read file content
-	let jsonData = try Data(contentsOf: URL(fileURLWithPath: filePath))
+    // Read file content
+    let jsonData = try Data(contentsOf: URL(fileURLWithPath: filePath))
 
-	let decoder = JSONDecoder()
+    let decoder = JSONDecoder()
 
 	let players = try decoder.decode([Player].self, from: jsonData)
 
@@ -65,7 +72,7 @@ do {
 //    let team = optimizer.optimise()
 //
 //    print("Total cost: " + String(Float(team.getCost()) / 10))
-//    team.printScore()
+    //    team.printScore()
     
 } catch let error {
 	print("An error took place: \(error)")

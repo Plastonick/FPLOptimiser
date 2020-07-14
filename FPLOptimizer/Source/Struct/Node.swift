@@ -18,7 +18,8 @@ struct Node {
     let midfielderCount: Int
     let forwardCount: Int
     let teamCount: [Int: Int]
-    let items: [Item]
+	let items: [Item]
+	let upperBounds: [Double]
 
     init (
         level: Int,
@@ -30,7 +31,8 @@ struct Node {
         midfielderCount: Int,
         forwardCount: Int,
         teamCount: [Int: Int],
-        items: [Item]
+        items: [Item],
+		upperBounds: [Double]
     ) {
         self.level = level
         self.value = value
@@ -41,7 +43,8 @@ struct Node {
         self.midfielderCount = midfielderCount
         self.forwardCount = forwardCount
         self.teamCount = teamCount
-        self.items = items
+		self.items = items
+		self.upperBounds = upperBounds
     }
 
     public func calculateTeamScore() -> Double {
@@ -88,9 +91,26 @@ struct Node {
             midfielderCount: midfielderCount,
             forwardCount: forwardCount,
             teamCount: teamCount,
-            items: self.items + [item]
+            items: self.items + [item],
+			upperBounds: self.upperBounds
         )
     }
+	
+	public func setUpperBound(upperBound: Double) -> Node {
+		return Node(
+			level: self.level,
+			value: self.value,
+			captainBonus: self.captainBonus,
+			weight: self.weight,
+			goalkeeperCount: self.goalkeeperCount,
+			defenderCount: self.defenderCount,
+			midfielderCount: self.midfielderCount,
+			forwardCount: self.forwardCount,
+			teamCount: teamCount,
+			items: self.items,
+			upperBounds: upperBounds + [upperBound]
+		)
+	}
 
     public func withoutItem() -> Node {
         return Node(
@@ -103,7 +123,8 @@ struct Node {
             midfielderCount: self.midfielderCount,
             forwardCount: self.forwardCount,
             teamCount: teamCount,
-            items: self.items
+            items: self.items,
+			upperBounds: self.upperBounds
         )
     }
 }

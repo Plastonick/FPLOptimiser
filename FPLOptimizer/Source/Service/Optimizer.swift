@@ -39,7 +39,7 @@ class Optimizer {
         
         var squad = Squad(players: [], week: fromWeek)
         var newSquad: Squad
-
+		
         // Build initial team based on naively assigning players from score/cost until valid
         for player in sortedPlayers {
             if !player.playsInWeek(week: fromWeek) {
@@ -103,7 +103,7 @@ class Optimizer {
                 }
 
                 if score > 101 {
-                    var a = 1
+					var a = 1
                 }
 
                 var canAdd = true

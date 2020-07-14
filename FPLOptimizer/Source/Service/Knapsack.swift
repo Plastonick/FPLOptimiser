@@ -14,7 +14,7 @@ class Knapsack {
     let itemsOrderedByValue: [Item]
     let week: Int
     let weightLimit: Double
-    var maxProfit: Double = 93
+    var maxProfit: Double = 90
     var bestItems: [Item] = []
 
     init (items: [Item], week: Int, weightLimit: Double) {
@@ -35,11 +35,11 @@ class Knapsack {
         // value greater than a certain amount, so we can work out a feasible
         // upper bound
         var itemsByEfficiencyDictionary: [Int: [Item]] = [:]
-        for item in self.itemsOrderedByValue {
+        for (level, item) in self.itemsOrderedByValue.enumerated() {
             itemsByEfficiency = itemsByEfficiency.filter(
                 { $0.player.id != item.player.id }
             )
-            itemsByEfficiencyDictionary[item.player.id] = itemsByEfficiency
+            itemsByEfficiencyDictionary[level] = itemsByEfficiency
         }
 
         self.itemsByEfficiencyDictionary = itemsByEfficiencyDictionary
@@ -50,10 +50,10 @@ class Knapsack {
 
     // TODO create an initial naive guess to give a bound with which to work with. It should help ignore invalid solutions quicker
 
-    func solve() -> (Double, [Item]) {
+    public func solve() -> (Double, [Item]) {
         // make a queue for traversing the node
-        var queue = buildQueue()
-        var u = Node(level: -1, value: 0, captainBonus: 0, weight: 0, goalkeeperCount: 0, defenderCount: 0, midfielderCount: 0, forwardCount: 0, teamCount: [:], items: [])
+        var queue = Queue<Node>()
+		var u = Node(level: -1, value: 0, captainBonus: 0, weight: 0, goalkeeperCount: 0, defenderCount: 0, midfielderCount: 0, forwardCount: 0, teamCount: [:], items: [], upperBounds: [])
 
         // dummy node at starting
         queue.write(u)
@@ -62,9 +62,9 @@ class Knapsack {
         // compute profit of all children of extracted item
         // and keep saving maxProfit
         var i = 0
-        while (!queue.isEmpty) {
+        while !queue.isEmpty {
             i += 1
-
+			
             // Dequeue a node
             u = queue.read()!
 
@@ -75,21 +75,24 @@ class Knapsack {
                 continue
             }
 
-            let nodeWithPlayer = u.withItem(item: self.itemsOrderedByValue[level])
+            var nodeWithPlayer = u.withItem(item: self.itemsOrderedByValue[level])
 
             let withPlayerIsValid = self.nodeIsValid(nodeWithPlayer)
             let boundWithPlayer = bound(node: nodeWithPlayer)
+			
+			nodeWithPlayer = nodeWithPlayer.setUpperBound(upperBound: boundWithPlayer)
 
             if withPlayerIsValid && boundWithPlayer > self.maxProfit {
-                if nodeWithPlayer.items.count == 15 && nodeWithPlayer.calculateTeamScore() > self.maxProfit {
-                    self.maxProfit = nodeWithPlayer.calculateTeamScore()
-                    self.bestItems = nodeWithPlayer.items
-
-                    print(self.maxProfit)
+                if nodeWithPlayer.items.count == 15 {
+					if nodeWithPlayer.calculateTeamScore() > self.maxProfit {
+						self.maxProfit = nodeWithPlayer.calculateTeamScore()
+						self.bestItems = nodeWithPlayer.items
+						
+						print(self.maxProfit)
+					}
                 } else {
-                    // If bound value is greater than profit,
-                    // then only push into queue for further
-                    // consideration
+                    // This isn't a complete team yet, but the score upper bound is greater than the current best team,
+					// so we consider this as a potential blueprint
                     queue.write(nodeWithPlayer)
                 }
             }
@@ -103,9 +106,10 @@ class Knapsack {
             }
 
             // Consider if omitting the player could give a feasible improved solution, add it for consideration if so
-            let nodeWithoutPlayer = u.withoutItem()
+            var nodeWithoutPlayer = u.withoutItem()
             let boundWithoutPlayer = bound(node: nodeWithoutPlayer)
             if boundWithoutPlayer > self.maxProfit {
+				nodeWithoutPlayer = nodeWithoutPlayer.setUpperBound(upperBound: boundWithoutPlayer)
                 queue.write(nodeWithoutPlayer)
             }
         }
@@ -118,51 +122,52 @@ class Knapsack {
     fileprivate func bound(node: Node) -> Double {
         // if weight overcomes the knapsack capacity, return
         // 0 as expected bound, since it's an impossible solution
-        if (node.weight > self.weightLimit) {
+        if node.weight > self.weightLimit {
             return 0.0
         }
+		
+		// if the node already has the maximum players, the upper bound is the same as the value; partial inclusions of
+		// players only makes sense when we have space in the team
+		if node.items.count == 15 {
+			return node.calculateTeamScore()
+		}
+		
+		// TODO consider finding the highest value applicable player if there is a single slot remaining
 
-        // initialize bound on profit by current profit
-        var profitBound: Double = node.value
+        var currentLevel: Int = node.level
+		
+		var upperBound: Node = node
+		
+		let itemsRemaining = self.getItemEfficiencyListFor(level: node.level)
+		
+		while upperBound.weight + itemsRemaining[currentLevel].weight <= self.weightLimit {
+			upperBound = upperBound.withItem(item: itemsRemaining[currentLevel])
+			currentLevel += 1
+			
+			// there are no more players to consider -- return the current team score
+			if currentLevel >= itemsRemaining.count {
+				return upperBound.calculateTeamScore()
+			}
+		}
 
-        // start including items from index 1 more to current
-        // item index
-        var currentLevel: Int = node.level + 1
-        var totalWeight: Double = node.weight
-        var captaincyBonus = node.captainBonus
+		var profitBound = upperBound.calculateTeamScore()
+		
+		// we have partial weight remaining, assume we can include a fraction of a player for a better upper bound
+		if (upperBound.weight < self.weightLimit) {
+			let playerInclusionAmount = (self.weightLimit - upperBound.weight) / itemsRemaining[currentLevel].weight
+			profitBound += playerInclusionAmount * itemsRemaining[currentLevel].value
+		}
+		
+		if node.upperBounds.count > 0 && profitBound > node.upperBounds.last! {
+			print("oh shit")
+		}
 
-        if let itemsRemaining = self.itemsByEfficiencyDictionary[self.itemsOrderedByValue[node.level].player.id] {
-            let itemsRemainingCount = itemsRemaining.count
-
-            while totalWeight + itemsRemaining[currentLevel].weight <= self.weightLimit {
-                let itemByConsideration = itemsRemaining[currentLevel]
-                currentLevel += 1
-                totalWeight += itemByConsideration.weight
-                profitBound += itemByConsideration.value
-
-                if itemByConsideration.value > captaincyBonus {
-                    captaincyBonus = itemByConsideration.value
-                }
-            }
-
-            profitBound += captaincyBonus
-
-            // If k is not n, include last item partially for
-            // upper bound on profit
-            if (currentLevel < itemsRemainingCount) {
-                profitBound += (self.weightLimit - totalWeight) * itemsRemaining[currentLevel].value / itemsRemaining[currentLevel].weight
-            }
-
-            return profitBound
-        }
-
-        return Double(0)
+        return profitBound
     }
-
-
-    fileprivate func buildQueue() -> Queue<Node> {
-        return Queue<Node>()
-    }
+	
+	fileprivate func getItemEfficiencyListFor(level: Int) -> [Item] {
+		return self.itemsByEfficiencyDictionary[level]!
+	}
 
     fileprivate func nodeIsValid(_ node: Node) -> Bool {
         if node.weight > self.weightLimit {

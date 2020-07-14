@@ -32,7 +32,7 @@ class Player: Decodable {
             return prediction.cost
         }
 
-        // if the player isn't present, give them an expensive price
+        // if the player isn't present, give them an excessively expensive price
         return 100000
     }
     
